@@ -1,0 +1,23 @@
+import requests
+
+def translate_text(text):
+    # Set the endpoint and parameters for the API
+    endpoint = "https://translation.googleapis.com/language/translate/v2"
+    params = {
+        "q": text,
+        "target": "ml",
+        "format": "text"
+    }
+
+    # Send a GET request to the API
+    response = requests.get(endpoint, params=params)
+
+    # Get the translated text from the response
+    translated_text = response.json()["data"]["translations"][0]["translatedText"]
+
+    return translated_text
+
+# Example usage
+text = "Hello, World!"
+translation = translate_text(text)
+print(translation)
